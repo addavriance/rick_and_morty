@@ -1,0 +1,34 @@
+@import 'common_components.css';
+
+@import "normalize.css";
+
+@import "fonts.css";
+@import "utils.css";
+
+:root {
+    --text-secondary: rgba(1, 1, 1, 0.6)
+}
+
+.container {
+    width: 100%;
+    max-width: 1068px;
+
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.text-primary {
+    color: black;
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+}
+
+input, select {
+    padding: 1rem 1rem;
+    border: 1px gray solid;
+    border-radius: 0.5rem;
+
+    height: fit-content;
+}

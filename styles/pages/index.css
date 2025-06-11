@@ -1,0 +1,40 @@
+.main-logo__icon {
+    margin-bottom: 1rem;
+    use {
+        filter: drop-shadow(0 0 10px #2bff00);
+        transform: translate(0, 10px);
+        stroke-width: 3;
+        stroke: #003e45;
+        fill: none;
+    }
+}
+
+.filters__content {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    label, select, input {
+        max-width: 240px;
+        width: 100%;
+    }
+}
+
+.search__field {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+        padding-left: 3rem;
+    }
+}
+
+.search__icon {
+    position: absolute;
+
+    left: 18px;
+}

@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    scroll-behavior: smooth;
+}
+
+main {
+    padding: 5rem 0;
+    height: 100%;
+}
+
+a {
+    display: inline-flex;
+
+    width: fit-content;
+
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+a:active {
+    transform: scale(0.95);
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+button {
+    display: inline-flex;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

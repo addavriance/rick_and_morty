@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rick and Morty</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/pages/index.css">
+</head>
+<header class="header">
+    <div class="container header__container">
+        <div class="header__content">
+            <a class="logo" href="index.html">
+                <svg class="logo__icon" aria-hidden="true" width="46.000000pt" height="49.000000pt">
+                    <use xlink:href="assets/icons/logo-small.svg#icon"></use>
+                </svg>
+            </a>
+            <nav class="header__nav">
+                <a class="header__link" href="index.html">Characters</a>
+                <a class="header__link" href="locations.html">Locations</a>
+                <a class="header__link" href="episodes.html">Episodes</a>
+            </nav>
+        </div>
+    </div>
+</header>
+<body>
+<main class="main">
+    <div class="container main__container">
+        <div class="main-logo w-fit mx-auto">
+            <svg class="main-logo__icon" width="755" height="235" viewBox="0 0 755 230" preserveAspectRatio="xMidYMid meet">
+                <use xlink:href="assets/icons/logo-large.svg#icon"/>
+            </svg>
+        </div>
+        <div class="main-filters">
+            <div class="filters__content">
+                <label for="search" class="search__field">
+                    <input
+                            type="search"
+                            id="search"
+                            name="search"
+                            placeholder="Filter by name..."
+                            aria-label="Search by name"
+                    >
+                    <svg class="search__icon" width="24" height="24" aria-hidden="true">
+                        <use xlink:href="assets/icons/search.svg#icon"></use>
+                    </svg>
+                </label>
+
+                <select id="species" name="species" aria-label="Select species">
+                    <option value="" disabled selected>Species</option>
+                    <!-- Опции -->
+                </select>
+
+                <select id="gender" name="gender" aria-label="Select gender">
+                    <option value="" disabled selected>Gender</option>
+                    <!-- Опции -->
+                </select>
+
+                <select id="status" name="status" aria-label="Select status">
+                    <option value="" disabled selected>Status</option>
+                    <!-- Опции -->
+                </select>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+<footer class="footer">
+    <div class="container footer__container">
+        <div class="footer__content">
+            <p class="w-fit mx-auto">Make with ❤️ for the MobProgramming team</p>
+        </div>
+    </div>
+</footer>
+</html>
