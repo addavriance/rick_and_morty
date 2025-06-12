@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Rick and Morty</title>
     <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/pages/index.css">
+    <link rel="stylesheet" href="styles/pages/episodes.css">
 </head>
 <header class="header">
     <div class="container header__container">
@@ -39,14 +39,12 @@
 </nav>
 
 <div class="mobile-menu__backdrop"></div>
+
 <body>
 <main class="main">
     <div class="container main__container">
         <div class="main-logo w-fit mx-auto">
-            <svg class="main-logo__icon" width="755" height="235" viewBox="0 0 755 230"
-                 preserveAspectRatio="xMidYMid meet">
-                <use xlink:href="assets/icons/logo-large.svg#icon"/>
-            </svg>
+            <img class="main-logo__icon" src="assets/images/rick_and_morty2.png" width="270" alt="logo">
         </div>
         <div class="main-filters">
             <div class="filters__content">
@@ -55,31 +53,12 @@
                             type="search"
                             id="search"
                             name="search"
-                            placeholder="Filter by name..."
+                            placeholder="Filter by name or episode (ex. S01 or S01E02)"
                     >
                     <svg class="search__icon" width="24" height="24">
                         <use xlink:href="assets/icons/search.svg#icon"></use>
                     </svg>
                 </label>
-
-                <button class="filters__button">
-                    <svg class="filter__icon" width="18" height="12">
-                        <use xlink:href="assets/icons/filter.svg#icon"></use>
-                    </svg>
-                    Advanced filters
-                </button>
-
-                <select id="species" name="species">
-                    <option value="" selected>All Species</option>
-                </select>
-
-                <select id="gender" name="gender">
-                    <option value="" selected>All Genders</option>
-                </select>
-
-                <select id="status" name="status">
-                    <option value="" selected>All Status</option>
-                </select>
             </div>
         </div>
         <div class="main__content">
@@ -89,7 +68,7 @@
 </main>
 
 <script src="src/api.js"></script>
-<script src="src/pages/index.js"></script>
+<script src="src/pages/episodes.js"></script>
 </body>
 <footer class="footer">
     <div class="container footer__container">

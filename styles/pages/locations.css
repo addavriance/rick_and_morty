@@ -1,9 +1,7 @@
-.main-logo__icon use {
-    filter: drop-shadow(0 0 10px #2bff00);
-    transform: translate(0, 10px);
-    stroke-width: 1.5;
-    stroke: #003e45;
-    fill: none;
+.filters__content {
+    label, input {
+        max-width: 326px;
+    }
 }
 
 @media (max-width: 720px)  {
@@ -24,13 +22,9 @@
         justify-content: center;
         grid-template-columns: 100%;
 
-        .character__card {
+        .location__card {
             max-width: 100%;
             width: 100%;
-        }
-
-        .card__image-box img {
-            max-height: 60vw;
         }
     }
 
@@ -43,3 +37,4 @@
         }
     }
 }
+

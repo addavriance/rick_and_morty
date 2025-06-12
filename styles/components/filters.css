@@ -1,0 +1,43 @@
+.filters__content {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    label, select, input {
+        max-width: 240px;
+        width: 100%;
+    }
+
+    margin-bottom: 3rem;
+}
+
+.filters__button {
+    position: relative;
+    display: none;
+    padding-left: 2rem;
+}
+
+.filter__icon {
+    top: 39%;
+    position: absolute;
+
+    left: 5%;
+}
+
+.search__field {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+        padding-left: 3rem;
+    }
+}
+
+.search__icon {
+    position: absolute;
+
+    left: 18px;
+}

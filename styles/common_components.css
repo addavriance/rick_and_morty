@@ -1,4 +1,8 @@
 @import 'components/header.css';
 @import 'components/footer.css';
+@import 'components/scrollbar.css';
 
-@import 'components/character-card.css';
+@import 'components/filters.css';
+@import 'components/cards/character-card.css';
+@import 'components/cards/location-card.css';
+@import 'components/cards/episode-card.css';

@@ -1,0 +1,42 @@
+.character__card {
+    background-color: white;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    max-width: 240px;
+    width: 100%;
+    box-shadow: 0 3px 4px 0 rgba(34, 60, 80, 0.3);
+}
+
+.card__image-box {
+    img {
+        object-fit: cover;
+        width: 100%;
+        max-height: 168px;
+    }
+}
+
+.character-card__content {
+    padding: 1rem;
+}
+
+.character-card__title {
+    font-size: 20px;
+    margin-bottom: 0.25rem;
+}
+
+.character-card__desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(1, 1, 1, 0.6)
+}
+
+.character__card {
+    display: block;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.3s ease all;
+}
+
+.character__card:active {
+    transform: scale(0.95);
+}
