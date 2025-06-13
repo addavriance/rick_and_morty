@@ -12,6 +12,17 @@ class RickAndMortyAPI {
         try {
             const response = await fetch(url);
             if (!response.ok) {
+                if (response.status === 404) {
+                    return {
+                        info: {
+                            count: 0,
+                            pages: 0,
+                            next: null,
+                            prev: null
+                        },
+                        results: []
+                    };
+                }
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return await response.json();
@@ -78,7 +89,7 @@ class RickAndMortyAPI {
         return await this.fetchData(url);
     }
 
-    async getAllDataForFilters() {
+    async getAllDataForFilters() { // unused
         const results = {
             characters: { species: new Set(), gender: new Set(), status: new Set() },
             locations: { type: new Set(), dimension: new Set() },

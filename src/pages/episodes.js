@@ -12,6 +12,7 @@ class EpisodesPage {
 
     init() {
         this.setupEventListeners();
+        this.showInitialLoader();
         this.loadEpisodes();
     }
 
@@ -55,7 +56,11 @@ class EpisodesPage {
         if (this.isLoading || !this.hasMorePages) return;
 
         this.isLoading = true;
-        this.showLoadingState();
+        if (this.currentPage === 1) {
+            this.showInitialLoader();
+        } else {
+            this.showLoadingState();
+        }
 
         try {
             const data = await this.api.getEpisodes(this.currentPage, this.currentFilters);
@@ -63,15 +68,22 @@ class EpisodesPage {
             if (this.currentPage === 1) {
                 this.episodes = data.results;
                 this.clearEpisodeContainer();
+                this.hideInitialLoader();
             } else {
                 this.episodes.push(...data.results);
             }
 
-            this.renderEpisodes(data.results);
+            if (data.results.length === 0) {
+                this.showNoResultsState();
+            } else {
+                this.renderEpisodes(data.results);
+            }
+
             this.updatePaginationInfo(data.info);
 
         } catch (error) {
             console.error('Error loading episodes:', error);
+            this.hideInitialLoader();
             this.showErrorState();
         } finally {
             this.isLoading = false;
@@ -96,10 +108,14 @@ class EpisodesPage {
         const container = document.querySelector('.main__content');
         if (!container) return;
 
+        const newCards = [];
         episodes.forEach(episode => {
             const episodeCard = this.createEpisodeCard(episode);
             container.appendChild(episodeCard);
+            newCards.push(episodeCard);
         });
+
+        GhostLoaderUtils.staggerCardAnimation(newCards);
     }
 
     createEpisodeCard(episode) {
@@ -115,6 +131,8 @@ class EpisodesPage {
 
         card.addEventListener('click', () => {
             console.log('Episode clicked:', episode);
+            // TODO: Navigate to episode details page
+            // window.location.href = `episode-details.html?id=${episode.id}`;
         });
 
         return card;
@@ -165,6 +183,37 @@ class EpisodesPage {
                     <button onclick="location.reload()">Try again</button>
                 </div>
             `;
+        }
+    }
+
+    showNoResultsState() {
+        const container = document.querySelector('.main__content');
+        if (container) {
+            container.innerHTML = `
+                <div class="no-results-state">
+                    <p>No episodes found matching your criteria.</p>
+                    <p>Try adjusting your search terms.</p>
+                </div>
+            `;
+        }
+
+        const loadMoreBtn = document.querySelector('.load-more__button');
+        if (loadMoreBtn) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
+    showInitialLoader() {
+        const container = document.querySelector('.main__content');
+        if (container) {
+            GhostLoaderUtils.showGhostLoaders(container, 'episode', 8);
+        }
+    }
+
+    hideInitialLoader() {
+        const container = document.querySelector('.main__content');
+        if (container) {
+            GhostLoaderUtils.removeGhostLoaders(container);
         }
     }
 }

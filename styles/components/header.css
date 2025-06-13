@@ -39,6 +39,7 @@
     gap: 2rem;
     transition: all 0.3s ease;
     z-index: 998;
+    transform: translateX(-100%);
 }
 
 .mobile-menu__toggle {
@@ -98,8 +99,6 @@
     .header__nav--mobile {
         opacity: 1;
         pointer-events: inherit;
-        transform: translateX(-100%);
-
     }
 
     .mobile-menu__button {

@@ -1,3 +1,4 @@
+// Locations page functionality
 class LocationsPage {
     constructor() {
         this.api = new RickAndMortyAPI();
@@ -6,12 +7,14 @@ class LocationsPage {
         this.isLoading = false;
         this.hasMorePages = true;
         this.locations = [];
+        this.filterModal = null;
 
         this.init();
     }
 
     init() {
         this.setupEventListeners();
+        this.showInitialLoader();
         this.loadLocations();
         this.setupFilters();
     }
@@ -50,18 +53,18 @@ class LocationsPage {
         const filtersButton = document.querySelector('.filters__button');
         if (filtersButton) {
             filtersButton.addEventListener('click', () => {
-                this.toggleAdvancedFilters();
+                this.showAdvancedFilters();
             });
         }
     }
 
     async setupFilters() {
-        const filterOptions = {
+        this.filterOptions = {
             type: ["Acid Plant", "Arcade", "Artificially generated world", "Asteroid", "Base", "Box", "Cluster", "Consciousness", "Convention", "Country", "Customs", "Daycare", "Death Star", "Diegesis", "Dimension", "Dream", "Dwarf planet (Celestial Dwarf)", "Elemental Rings", "Fantasy town", "Game", "Hell", "Human", "Liquid", "Machine", "Memory", "Menagerie", "Microverse", "Miniverse", "Mount", "Nightmare", "Non-Diegetic Alternative Reality", "Planet", "Police Department", "Quadrant", "Quasar", "Reality", "Resort", "Spa", "Space", "Space station", "Spacecraft", "TV", "Teenyverse", "Woods", "unknown"],
             dimension: ["Chair Dimension", "Cromulon Dimension", "Cronenberg Dimension", "Dimension 5-126", "Dimension C-137", "Dimension C-35", "Dimension C-500A", "Dimension D-99", "Dimension D716", "Dimension D716-B", "Dimension D716-C", "Dimension J-22", "Dimension J19ζ7", "Dimension K-22", "Dimension K-83", "Eric Stoltz Mask Dimension", "Evil Rick's Target Dimension", "Fantasy Dimension", "Fascist Dimension", "Fascist Shrimp Dimension", "Fascist Teddy Bear Dimension", "Giant Telepathic Spiders Dimension", "Magic Dimension", "Merged Dimension", "Phone Dimension", "Pizza Dimension", "Post-Apocalyptic Dimension", "Replacement Dimension", "Testicle Monster Dimension", "Tusk Dimension", "Unknown dimension", "Wasp Dimension", "unknown"]
         };
 
-        Object.entries(filterOptions).forEach(([filterId, options]) => {
+        Object.entries(this.filterOptions).forEach(([filterId, options]) => {
             const select = document.getElementById(filterId);
             if (select) {
                 options.forEach(option => {
@@ -72,16 +75,37 @@ class LocationsPage {
                 });
             }
         });
+
+        this.filterModal = new FilterModal(this.filterOptions, this.currentFilters);
+        this.filterModal.setOnApply((newFilters) => {
+            this.currentFilters = {...newFilters};
+            this.updateDesktopSelects();
+            this.resetAndSearch();
+        });
     }
 
-    toggleAdvancedFilters() {
+    showAdvancedFilters() {
+        this.filterModal.open();
+    }
+
+    updateDesktopSelects() {
+        Object.entries(this.currentFilters).forEach(([filterId, value]) => {
+            const select = document.getElementById(filterId);
+            if (select) {
+                select.value = value || '';
+            }
+        });
     }
 
     async loadLocations() {
         if (this.isLoading || !this.hasMorePages) return;
 
         this.isLoading = true;
-        this.showLoadingState();
+        if (this.currentPage === 1) {
+            this.showInitialLoader();
+        } else {
+            this.showLoadingState();
+        }
 
         try {
             const data = await this.api.getLocations(this.currentPage, this.currentFilters);
@@ -89,15 +113,22 @@ class LocationsPage {
             if (this.currentPage === 1) {
                 this.locations = data.results;
                 this.clearLocationContainer();
+                this.hideInitialLoader();
             } else {
                 this.locations.push(...data.results);
             }
 
-            this.renderLocations(data.results);
+            if (data.results.length === 0) {
+                this.showNoResultsState();
+            } else {
+                this.renderLocations(data.results);
+            }
+
             this.updatePaginationInfo(data.info);
 
         } catch (error) {
             console.error('Error loading locations:', error);
+            this.hideInitialLoader();
             this.showErrorState();
         } finally {
             this.isLoading = false;
@@ -122,10 +153,14 @@ class LocationsPage {
         const container = document.querySelector('.main__content');
         if (!container) return;
 
+        const newCards = [];
         locations.forEach(location => {
             const locationCard = this.createLocationCard(location);
             container.appendChild(locationCard);
+            newCards.push(locationCard);
         });
+
+        GhostLoaderUtils.staggerCardAnimation(newCards);
     }
 
     createLocationCard(location) {
@@ -140,6 +175,8 @@ class LocationsPage {
 
         card.addEventListener('click', () => {
             console.log('Location clicked:', location);
+            // TODO: Navigate to location details page
+            // window.location.href = `location-details.html?id=${location.id}`;
         });
 
         return card;
@@ -190,6 +227,37 @@ class LocationsPage {
                     <button onclick="location.reload()">Try again</button>
                 </div>
             `;
+        }
+    }
+
+    showNoResultsState() {
+        const container = document.querySelector('.main__content');
+        if (container) {
+            container.innerHTML = `
+                <div class="no-results-state">
+                    <p>No locations found matching your criteria.</p>
+                    <p>Try adjusting your filters or search terms.</p>
+                </div>
+            `;
+        }
+
+        const loadMoreBtn = document.querySelector('.load-more__button');
+        if (loadMoreBtn) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
+    showInitialLoader() {
+        const container = document.querySelector('.main__content');
+        if (container) {
+            GhostLoaderUtils.showGhostLoaders(container, 'location', 8);
+        }
+    }
+
+    hideInitialLoader() {
+        const container = document.querySelector('.ghost__content');
+        if (container) {
+            GhostLoaderUtils.removeGhostLoaders(container);
         }
     }
 }

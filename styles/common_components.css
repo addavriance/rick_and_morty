@@ -6,3 +6,7 @@
 @import 'components/cards/character-card.css';
 @import 'components/cards/location-card.css';
 @import 'components/cards/episode-card.css';
+
+@import 'components/loaders.css';
+@import 'components/ghost-loading.css';
+@import 'components/filter-modal.css';
