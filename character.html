@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rick and Morty</title>
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/pages/character.css">
@@ -49,73 +50,29 @@
             Go back
         </a>
         <div class="character__info-title">
-            <img src="assets/images/example_avatar.png" alt="Preview" class="character__avatar">
-            <p class="character__name">Rick Sanchez</p>
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP7//wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Character Avatar" class="character__avatar">
+            <p class="character__name"></p>
         </div>
         <div class="character__info-body">
             <div class="character-column__information">
                 <p class="character-column__title">Informations</p>
                 <div class="column__content">
-                    <div class="column__item">
-                        <div class="column__item-wrapper">
-                            <div class="column__item-title">Gender</div>
-                            <div class="column__item-value">Male</div>
-                        </div>
-                    </div>
-                    <div class="column__item">
-                        <div class="column__item-wrapper">
-                            <div class="column__item-title">Status</div>
-                            <div class="column__item-value">Alive</div>
-                        </div>
-                    </div>
-                    <div class="column__item">
-                        <div class="column__item-wrapper">
-                            <div class="column__item-title">Specie</div>
-                            <div class="column__item-value">Human</div>
-                        </div>
-                    </div>
-                    <div class="column__item">
-                        <div class="column__item-wrapper">
-                            <div class="column__item-title">Origin</div>
-                            <div class="column__item-value">Earth (C-137)</div>
-                        </div>
-                    </div>
-                    <div class="column__item">
-                        <div class="column__item-wrapper">
-                            <div class="column__item-title">Type</div>
-                            <div class="column__item-value">Unknown</div>
-                        </div>
-                    </div>
-                    <div class="column__item">
-                        <div class="column__item-wrapper">
-                            <div class="column__item-title">Location</div>
-                            <div class="column__item-value">Earth (Replacement Dimension)</div>
-                        </div>
-                    </div>
+                    <!-- Will be populated by JavaScript -->
                 </div>
             </div>
             <div class="character-column__episodes">
                 <p class="character-column__title">Episodes</p>
                 <div class="column__content">
-                    <div class="column__item">
-                        <div class="column__item-wrapper">
-                            <div class="column__item-title">S01E01</div>
-                            <div class="column__item-value">Pilot</div>
-                            <div class="column__item-date">December 2, 2013</div>
-                        </div>
-                        <a class="go-to__button"><!-- maybe should make whole item clickable as <a></a> -->
-                            <svg class="go-to__icon" width="8" height="12">
-                                <use xlink:href="assets/icons/chevron-right.svg#icon"></use>
-                            </svg>
-                        </a>
-                    </div>
+                    <!-- Will be populated by JavaScript -->
                 </div>
             </div>
         </div>
     </div>
 </main>
 
+<!-- API and page scripts -->
 <script src="src/api.js"></script>
+<script src="src/pages/character.js"></script>
 </body>
 <footer class="footer">
     <div class="container footer__container">

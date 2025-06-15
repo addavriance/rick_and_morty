@@ -89,6 +89,11 @@ class RickAndMortyAPI {
         return await this.fetchData(url);
     }
 
+    async getMultipleEpisodes(ids) {
+        const url = `${this.baseURL}${this.endpoints.episodes}/${ids.join(',')}`;
+        return await this.fetchData(url);
+    }
+
     async getAllDataForFilters() { // unused
         const results = {
             characters: { species: new Set(), gender: new Set(), status: new Set() },

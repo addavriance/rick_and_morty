@@ -1,5 +1,5 @@
 .main__container {
-    padding-bottom: 4rem;
+    padding-bottom: 5rem;
 }
 
 .go-back__button {
@@ -29,6 +29,7 @@
 }
 
 .character__name {
+    margin-top: 10px;
     font-size: 48px;
     font-weight: 400;
 }
@@ -99,7 +100,42 @@
     color: #8E8E93;
 }
 
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.avatar-ghost-loader {
+    transition: opacity 0.3s ease;
+}
+
+.name-ghost-loader {
+    transition: opacity 0.3s ease;
+}
+
+.character__avatar {
+    transition: opacity 0.3s ease;
+}
+
+.character__name {
+    transition: opacity 0.3s ease;
+    min-height: 58px;
+}
+
+.information-ghost-item,
+.episode-ghost-item {
+    pointer-events: none;
+}
+
 @media (max-width: 600px) {
+    .character__info-title {
+        margin: 1rem auto 2.25rem;
+    }
+
     .character__info-body {
         flex-direction: column;
     }
