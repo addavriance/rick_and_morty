@@ -98,10 +98,10 @@ class CharacterDetailPage {
             const tempImg = new Image();
             tempImg.onload = () => {
                 avatarImg.src = this.character.image;
-                avatarImg.style.opacity = '1';
                 if (avatarGhost) {
                     avatarGhost.style.opacity = '0';
                     setTimeout(() => avatarGhost.remove(), 300);
+                    setTimeout(() => avatarImg.style.opacity = '1', 200)
                 }
             };
 
@@ -189,8 +189,7 @@ class CharacterDetailPage {
             const locationId = this.character.location.url.split('/').pop();
             linkButton.addEventListener('click', () => {
                 console.log('Navigate to location:', locationId);
-                // TODO: Navigate to location details
-                // window.location.href = `location.html?id=${locationId}`;
+                window.location.href = `location.html?id=${locationId}`;
             });
 
             itemDiv.appendChild(linkButton);
@@ -259,7 +258,7 @@ class CharacterDetailPage {
         linkButton.addEventListener('click', () => {
             console.log('Navigate to episode:', episode.id);
             // TODO: Navigate to episode details
-            // window.location.href = `episode.html?id=${episode.id}`;
+            window.location.href = `episode.html?id=${episode.id}`;
         });
 
         itemDiv.appendChild(linkButton);

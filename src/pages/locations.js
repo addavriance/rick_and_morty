@@ -175,8 +175,7 @@ class LocationsPage {
 
         card.addEventListener('click', () => {
             console.log('Location clicked:', location);
-            // TODO: Navigate to location details page
-            // window.location.href = `location-details.html?id=${location.id}`;
+            window.location.href = `location.html?id=${location.id}`;
         });
 
         return card;
@@ -255,7 +254,7 @@ class LocationsPage {
     }
 
     hideInitialLoader() {
-        const container = document.querySelector('.ghost__content');
+        const container = document.querySelector('.main__content');
         if (container) {
             GhostLoaderUtils.removeGhostLoaders(container);
         }

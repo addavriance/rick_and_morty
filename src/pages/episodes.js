@@ -132,7 +132,7 @@ class EpisodesPage {
         card.addEventListener('click', () => {
             console.log('Episode clicked:', episode);
             // TODO: Navigate to episode details page
-            // window.location.href = `episode-details.html?id=${episode.id}`;
+            window.location.href = `episode.html?id=${episode.id}`;
         });
 
         return card;
