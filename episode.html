@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rick and Morty</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/pages/episode.css">
+</head>
+<header class="header">
+    <div class="container header__container">
+        <div class="header__content">
+            <a class="logo" href="index.html">
+                <svg class="logo__icon" width="46.000000pt" height="49.000000pt">
+                    <use xlink:href="assets/icons/logo-small.svg#icon"></use>
+                </svg>
+            </a>
+
+            <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu__toggle">
+
+            <label for="mobile-menu-toggle" class="mobile-menu__button">
+                <span class="mobile-menu__line"></span>
+                <span class="mobile-menu__line"></span>
+                <span class="mobile-menu__line"></span>
+            </label>
+
+            <nav class="header__nav header__nav--desktop">
+                <a class="header__link" href="index.html">Characters</a>
+                <a class="header__link" href="locations.html">Locations</a>
+                <a class="header__link" href="episodes.html">Episodes</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<nav class="header__nav header__nav--mobile">
+    <a class="header__link" href="index.html">Characters</a>
+    <a class="header__link" href="locations.html">Locations</a>
+    <a class="header__link" href="episodes.html">Episodes</a>
+</nav>
+
+<div class="mobile-menu__backdrop"></div>
+<body>
+<main class="main">
+    <div class="container main__container">
+        <a class="go-back__button" href="episodes.html">
+            <svg class="logo__icon" width="16" height="16">
+                <use xlink:href="assets/icons/arrow-left.svg#icon"></use>
+            </svg>
+            Go back
+        </a>
+        <div class="episode-info__block">
+            <p class="episode__name"></p>
+            <div class="episode__info">
+                <div>
+                    <p class="column__item-title">Episode</p>
+                    <p class="column__item-value"></p>
+                </div>
+                <div>
+                    <p class="column__item-title">Date</p>
+                    <p class="column__item-value"></p>
+                </div>
+            </div>
+        </div>
+        <p class="main__content-title">Cast</p>
+        <div class="main__content">
+        </div>
+    </div>
+</main>
+
+<script src="src/api.js"></script>
+<script src="src/utils/ghost-loaders.js"></script>
+<script src="src/pages/episode.js"></script>
+</body>
+<footer class="footer">
+    <div class="container footer__container">
+        <div class="footer__content">
+            <p class="w-fit mx-auto">Make with ❤️ for the MobProgramming team</p>
+        </div>
+    </div>
+</footer>
+</html>
