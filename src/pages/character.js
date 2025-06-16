@@ -10,12 +10,26 @@ class CharacterDetailPage {
     }
 
     init() {
+        this.setupBackButton();
         this.getCharacterIdFromURL();
         if (this.characterId) {
             this.showInitialLoader();
             this.loadCharacterData();
         } else {
             this.show404();
+        }
+    }
+
+    setupBackButton() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ref = urlParams.get('ref') || 'index';
+        const backButton = document.getElementById('back-button');
+
+        if (backButton) {
+            const [referrer, id] = ref.split("_");
+
+            const backUrl = ref === 'characters' ? 'index.html' : id ? `${referrer}.html?id=${id}` : `${referrer}.html`;
+            backButton.href = backUrl;
         }
     }
 
@@ -189,7 +203,7 @@ class CharacterDetailPage {
             const locationId = this.character.location.url.split('/').pop();
             linkButton.addEventListener('click', () => {
                 console.log('Navigate to location:', locationId);
-                window.location.href = `location.html?id=${locationId}`;
+                window.location.href = `location.html?id=${locationId}&ref=character_${this.characterId}`;
             });
 
             itemDiv.appendChild(linkButton);
@@ -258,7 +272,7 @@ class CharacterDetailPage {
         linkButton.addEventListener('click', () => {
             console.log('Navigate to episode:', episode.id);
             // TODO: Navigate to episode details
-            window.location.href = `episode.html?id=${episode.id}`;
+            window.location.href = `episode.html?id=${episode.id}&ref=character_${this.characterId}`;
         });
 
         itemDiv.appendChild(linkButton);
@@ -297,8 +311,6 @@ class CharacterDetailPage {
             const nameGhost = document.createElement('div');
             nameGhost.className = 'name-ghost-loader';
             nameGhost.style.cssText = `
-                position: absolute;
-                top: 310px;
                 height: 58px;
                 width: 400px;
                 background: linear-gradient(90deg, #f8f8f8 25%, #eaeaea 50%, #f8f8f8 75%);
@@ -430,6 +442,10 @@ class CharacterDetailPage {
     show404() {
         const container = document.querySelector('.main__container');
         if (container) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ref = urlParams.get('ref') || 'index';
+            const backUrl = ref === 'characters' ? 'index.html' : `${ref}.html`;
+
             container.innerHTML = `
                 <div class="character-404">
                     <div style="text-align: center; padding: 60px 20px;">
@@ -438,7 +454,7 @@ class CharacterDetailPage {
                         <p style="font-size: 16px; margin-bottom: 32px; color: #8E8E93;">
                             The character you're looking for doesn't exist or may have been removed.
                         </p>
-                        <a href="index.html" style="
+                        <a href="${backUrl}" style="
                             padding: 12px 24px;
                             background-color: var(--primary);
                             color: var(--primary-500);
@@ -451,7 +467,10 @@ class CharacterDetailPage {
                             box-shadow: 0 3px 4px 0 rgba(34, 60, 80, 0.3);
                             transition: all 0.3s ease;
                         ">
-                            Back to Characters
+                            <svg width="16" height="16">
+                                <use xlink:href="assets/icons/arrow-left.svg#icon"></use>
+                            </svg>
+                            Back to ${ref === 'characters' ? 'Characters' : ref.charAt(0).toUpperCase() + ref.slice(1)}
                         </a>
                     </div>
                 </div>
@@ -460,6 +479,7 @@ class CharacterDetailPage {
     }
 }
 
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new CharacterDetailPage();
 });

@@ -10,12 +10,26 @@ class LocationDetailPage {
     }
 
     init() {
+        this.setupBackButton();
         this.getLocationIdFromURL();
         if (this.locationId) {
             this.showInitialLoader();
             this.loadLocationData();
         } else {
             this.show404();
+        }
+    }
+
+    setupBackButton() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ref = urlParams.get('ref') || 'locations';
+        const backButton = document.getElementById('back-button');
+
+        if (backButton) {
+            const [referrer, id] = ref.split("_");
+
+            const backUrl = id ? `${referrer}.html?id=${id}` : `${referrer}.html`;
+            backButton.href = backUrl;
         }
     }
 
@@ -230,7 +244,7 @@ class LocationDetailPage {
 
         card.addEventListener('click', () => {
             console.log('Character clicked:', character);
-            window.location.href = `character.html?id=${character.id}`;
+            window.location.href = `character.html?id=${character.id}&ref=location_${this.locationId}`;
         });
 
         return card;

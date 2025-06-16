@@ -229,7 +229,7 @@ class CharactersPage {
 
         card.addEventListener('click', () => {
             console.log('Character clicked:', character);
-            window.location.href = `character.html?id=${character.id}`;
+            window.location.href = `character.html?id=${character.id}&ref=characters`;
         });
 
         return card;

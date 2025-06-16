@@ -175,7 +175,7 @@ class LocationsPage {
 
         card.addEventListener('click', () => {
             console.log('Location clicked:', location);
-            window.location.href = `location.html?id=${location.id}`;
+            window.location.href = `location.html?id=${location.id}&ref=locations`;
         });
 
         return card;
