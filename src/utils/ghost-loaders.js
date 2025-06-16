@@ -82,7 +82,7 @@ class GhostLoaderUtils {
         }, delay);
     }
 
-    static staggerCardAnimation(cards, staggerDelay = 100) {
+    static staggerCardAnimation(cards, staggerDelay = 20) {
         if (!cards || !cards.length) return;
 
         cards.forEach((card, index) => {
