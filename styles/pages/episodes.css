@@ -3,15 +3,3 @@
         max-width: 500px;
     }
 }
-
-@media (max-width: 610px)  {
-    .main__content {
-        justify-content: center;
-        grid-template-columns: 100%;
-
-        .episode__card {
-            max-width: 100%;
-            width: 100%;
-        }
-    }
-}

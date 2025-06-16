@@ -18,28 +18,3 @@
         align-items: center;
     }
 }
-
-@media (max-width: 610px)  {
-    .main__content {
-        justify-content: center;
-        grid-template-columns: 100%;
-
-        .character__card {
-            max-width: 100%;
-            width: 100%;
-        }
-
-        .card__image-box img {
-            max-height: 60vw;
-        }
-    }
-
-    .filters__content {
-        flex-direction: column;
-
-        button, label, input {
-            width: 100%;
-            max-width: 100%
-        }
-    }
-}

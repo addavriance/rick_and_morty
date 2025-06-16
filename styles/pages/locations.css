@@ -16,25 +16,3 @@
         align-items: center;
     }
 }
-
-@media (max-width: 610px)  {
-    .main__content {
-        justify-content: center;
-        grid-template-columns: 100%;
-
-        .location__card {
-            max-width: 100%;
-            width: 100%;
-        }
-    }
-
-    .filters__content {
-        flex-direction: column;
-
-        button, label, input {
-            width: 100%;
-            max-width: 100%
-        }
-    }
-}
-
